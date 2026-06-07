@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --lk-blue: #1D5FBF;
+    --lk-navy: #0F172A;
+    --lk-accent: #60A5FA;
+    --lk-light: #F8FAFC;
+    --lk-dark: #020617;
+    --lk-success: #22C55E;
+
+    --bg-primary: #F8FAFC;
+    --bg-secondary: #FFFFFF;
+    --bg-tertiary: #EEF2F7;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
+    --border-color: #E2E8F0;
+    --card-bg: #FFFFFF;
+  }
+
+  .dark {
+    --bg-primary: #020617;
+    --bg-secondary: #0F172A;
+    --bg-tertiary: #1E293B;
+    --text-primary: #F1F5F9;
+    --text-secondary: #94A3B8;
+    --text-muted: #475569;
+    --border-color: #1E293B;
+    --card-bg: #0F172A;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .section-label {
+    @apply text-xs font-semibold tracking-widest uppercase text-brand-blue flex items-center gap-2 mb-4;
+  }
+
+  .section-label::before {
+    content: '';
+    @apply w-7 h-px bg-brand-blue inline-block;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-brand-blue text-white px-7 py-3.5 rounded text-sm font-medium tracking-wide transition-all duration-200 hover:bg-opacity-90 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-outline-light {
+    @apply inline-flex items-center gap-2 border border-white/50 text-white px-7 py-3.5 rounded text-sm font-medium transition-all duration-200 hover:border-white hover:bg-white/10;
+  }
+
+  .btn-outline-dark {
+    @apply inline-flex items-center gap-2 border border-brand-blue text-brand-blue px-7 py-3.5 rounded text-sm font-medium transition-all duration-200 hover:bg-brand-blue hover:text-white;
+  }
+
+  .service-card {
+    @apply bg-white dark:bg-brand-navy p-8 transition-all duration-300 relative overflow-hidden cursor-default;
+  }
+
+  .service-card::before {
+    content: '';
+    @apply absolute bottom-0 left-0 right-0 h-0.5 bg-brand-blue scale-x-0 transition-transform duration-300 origin-left;
+  }
+
+  .service-card:hover::before {
+    @apply scale-x-100;
+  }
+
+  .service-card:hover {
+    @apply -translate-y-1 shadow-xl z-10;
+  }
+
+  .why-card {
+    @apply p-9 border dark:border-slate-800 rounded-md bg-white dark:bg-brand-navy transition-all duration-200;
+  }
+
+  .why-card:hover {
+    @apply border-brand-blue -translate-y-0.5;
+  }
+
+  .blog-card {
+    @apply rounded-md overflow-hidden border dark:border-slate-800 bg-white dark:bg-brand-navy transition-all duration-200;
+  }
+
+  .blog-card:hover {
+    @apply -translate-y-1 shadow-xl;
+  }
+
+  /**.testimonial-card {
+  @apply flex-shrink-0 p-10 border dark:border-slate-800 rounded-lg bg-white dark:bg-brand-navy;
+  min-width: 340px;
+  max-width: 400px;
+  overflow: hidden;
+}**/
+
+  .footer-link {
+    @apply text-sm text-white/40 hover:text-white transition-colors duration-200;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-accent to-brand-blue;
+  }
+
+  .hero-grid-bg {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .animate-logo-scroll {
+    animation: logoScroll 22s linear infinite;
+  }
+
+  @keyframes logoScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes scrollLine {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  .animate-scroll-line {
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+}
+
+/* Testimonial Slider */
+.testimonials-track {
+  display: flex;
+  gap: 1.75rem;
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Kenya Map Pulse */
+@keyframes mapPulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.1; transform: scale(1.4); }
+}
+
+.map-pulse {
+  animation: mapPulse 2.5s ease-in-out infinite;
+}
+
+/* Process connector line */
+.process-connector {
+  position: absolute;
+  top: 40px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--lk-blue), transparent);
+}
+
+/* Glassmorphism nav */
+.nav-glass {
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.light .nav-glass {
+  background: rgba(248, 250, 252, 0.9);
+}
